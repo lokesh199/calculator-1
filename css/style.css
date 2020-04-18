@@ -49,11 +49,12 @@ button {
 }
 
 .display {
-  margin: 2rem 2rem 1rem;  
+  margin: 2rem 2rem 1rem;
 }
 
 .display__output {
   font-size: 5rem;
+  height: 5rem;
   /* font-weight: ; */
 }
 
@@ -71,11 +72,11 @@ button {
   cursor: pointer;
 }
 
-.operator-equals {
+.operators__equals {
   border-radius: 0 0 8px 0;
 }
 
-.digit-zero {
+.digits__zero {
   border-radius: 0 0 0 8px;
 }
 
@@ -174,6 +175,6 @@ button:hover {
   flex: 1 1 33.33%
 }
 
-.digit-zero {
+.digits__zero {
   flex-basis: 66.66%
 }
