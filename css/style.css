@@ -36,6 +36,7 @@ button {
 .wrapper {
   padding: 2rem;
   background-color: honeydew;
+  height: 100vh;
 }
 
 .calculator {
@@ -55,7 +56,6 @@ button {
 .display__output {
   font-size: 5rem;
   height: 5rem;
-  /* font-weight: ; */
 }
 
 .display__tape {
