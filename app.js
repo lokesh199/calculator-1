@@ -21,7 +21,7 @@ function operate(operator, ...numbers) {
 const displayOutput = document.querySelector('.display__output');
 const digitButtons = document.querySelectorAll('.digits > button');
 const operatorButtons = document.querySelectorAll('.operators > .operators__arithmetic');
-const equalsButton = document.querySelector('.operators > .operators__equals')
+const equalsButton = document.querySelector('.operators > .operators__equals');
 const clearButton = document.querySelector('.options > .options__clear');
 const decimalButton = document.querySelector('.digits > .digits__decimal');
 const changeSignButton = document.querySelector('.options .options__change-sign');
@@ -37,7 +37,7 @@ function appendDigit(digit) {
   if (currentValue === 0) {
     currentValue = digit;
   } else {
-    if (!(digit === '.' && !Number.isInteger(+currentValue))) {
+    if (!(digit === '.' && currentValue.includes('.'))) {
       currentValue += digit;
     }
   }
@@ -72,7 +72,7 @@ operatorButtons.forEach(btn => {
         displayOutput.textContent = currentValue;
       }
     }
-    storedOperator = window[e.target.getAttribute('data-key')];
+    storedOperator = window[e.target.getAttribute('data-operation')];
     storedValue = currentValue;
     currentValue = 0;
   })
@@ -117,4 +117,11 @@ backspaceButton.addEventListener('click', () => {
     currentValue = 0;
   }
   displayOutput.textContent = currentValue;
+})
+
+window.addEventListener('keydown', (e) => {
+  console.log(e.key);
+  const key = document.querySelector(`button[data-key="${e.key}"]`);
+  if (!key) return;
+  key.click();
 })

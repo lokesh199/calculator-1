@@ -14,21 +14,22 @@
           <span class="display__output">0</span>
           <div class="display__tape">
             (25 + 12 - 2) / 7
-            <button class="material-icons md-18 backspace">backspace</button>
+            <button data-key="Backspace" class="material-icons md-18 backspace">backspace</button>
           </div>
         </div>
         <div class="keypad">
           <div class="options">
-            <button class="options__clear">C</button>
+            <button data-key="Escape" class="options__clear">C</button>
             <button class="options__change-sign">&pm;</button>
-            <button class="options__percent">&#xFF05;</button>
+            <button data-key="%" class="options__percent">&#xFF05;</button>
           </div>
           <div class="operators">
-            <button data-key="divide" class="operators__arithmetic">&div;</button>
-            <button data-key="multiply" class="operators__arithmetic">&times;</button>
-            <button data-key="add" class="operators__arithmetic">&plus;</button>
-            <button data-key="subtract" class="operators__arithmetic">&minus;</button>
-            <button data-key="equals" class="operators__equals">&equals;</button>
+            <button data-key="/" data-operation="divide" class="operators__arithmetic">&div;</button>
+            <button data-key="*" data-operation="multiply" class="operators__arithmetic">&times;</button>
+            <button data-key="+" data-operation="add" class="operators__arithmetic">&plus;</button>
+            <button data-key="-" data-operation="subtract" class="operators__arithmetic">&minus;</button>
+            <button data-key="Enter" data-operation="equals"
+            class="operators__equals">&equals;</button>
           </div>
           <div class="digits">
             <button data-key="7">7</button>
