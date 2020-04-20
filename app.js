@@ -120,7 +120,6 @@ backspaceButton.addEventListener('click', () => {
 })
 
 window.addEventListener('keydown', (e) => {
-  console.log(e.key);
   const key = document.querySelector(`button[data-key="${e.key}"]`);
   if (!key) return;
   key.click();
