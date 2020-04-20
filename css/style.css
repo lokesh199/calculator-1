@@ -100,6 +100,15 @@ button:hover {
 
 .operators button {
   background-color: hsl(37, 94%, 52%);
+  font-size: 3.4rem;
+}
+
+.keypad .options .options__change-sign {
+  font-size: 3rem;
+}
+
+.keypad .options .options__percent {
+  font-size: 2.3rem;
 }
 
 /* FLEX STYLING */
