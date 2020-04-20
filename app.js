@@ -14,6 +14,10 @@ function divide(...numbers) {
   return numbers.reduce((quotient, nextNum) => quotient / nextNum);
 }
 
+function equals(...numbers) {
+  return [...numbers][0];
+}
+
 function operate(operator, ...numbers) {
   return operator(...numbers);
 }
@@ -34,6 +38,10 @@ let storedOperator = '';
 displayOutput.textContent = currentValue;
 
 function appendDigit(digit) {
+  if (storedOperator.name === 'equals') {
+    currentValue = 0;
+    storedOperator = '';
+  }
   if (currentValue === 0) {
     currentValue = digit;
   } else {
@@ -41,7 +49,7 @@ function appendDigit(digit) {
       currentValue += digit;
     }
   }
-  displayOutput.textContent = currentValue;
+  displayOutput.textContent = (currentValue.toString().length <= 8) ? currentValue : (+currentValue).toExponential(6);
 }
 
 
@@ -51,9 +59,9 @@ digitButtons.forEach(btn => {
   });
 })
 
-function roundNumber(number) {
+function roundNumber(number, length) {
   if (!Number.isInteger(number)) {
-    number = number.toPrecision(10);
+    number = number.toPrecision(length);
   }
   return number;
 }
@@ -61,15 +69,14 @@ function roundNumber(number) {
 
 operatorButtons.forEach(btn => {
   btn.addEventListener('click', (e) => {
-    displayOutput.textContent = currentValue;
     if (storedOperator) {
       let computedValue = operate(storedOperator, +storedValue, +currentValue);
       if (computedValue === Infinity) {
         currentValue = 0;
         displayOutput.textContent = `No div'n by 0`;
       } else {
-        currentValue = roundNumber(computedValue);
-        displayOutput.textContent = currentValue;
+        currentValue = roundNumber(computedValue, 10);
+        displayOutput.textContent = (currentValue.toString().length <= 8) ? currentValue : (+currentValue).toExponential(6);
       }
     }
     storedOperator = window[e.target.getAttribute('data-operation')];
@@ -78,20 +85,19 @@ operatorButtons.forEach(btn => {
   })
 });
 
-equalsButton.addEventListener('click', () => {
-  displayOutput.textContent = currentValue;
+equalsButton.addEventListener('click', (e) => {
   if (storedOperator) {
     let computedValue = operate(storedOperator, +storedValue, +currentValue);
     if (computedValue === Infinity) {
       currentValue = 0;
       displayOutput.textContent = `No div'n by 0`;
     } else {
-      currentValue = roundNumber(computedValue);
-      displayOutput.textContent = currentValue;
+      currentValue = roundNumber(computedValue, 10);
+      displayOutput.textContent = (currentValue.toString().length <= 8) ? currentValue : (+currentValue).toExponential(6);
     }
   }
-  storedValue = '';
-  storedOperator = '';
+  storedOperator = window[e.target.getAttribute('data-operation')];
+  storedValue = currentValue;
 });
 
 clearButton.addEventListener('click', () => {
@@ -103,12 +109,12 @@ clearButton.addEventListener('click', () => {
 
 changeSignButton.addEventListener('click', () => {
   currentValue = -currentValue;
-  displayOutput.textContent = currentValue;
+  displayOutput.textContent = (currentValue.toString().length <= 8) ? currentValue : (+currentValue).toExponential(6);
 })
 
 percentButton.addEventListener('click', () => {
   currentValue /= 100;
-  displayOutput.textContent = currentValue;
+  displayOutput.textContent = (currentValue.toString().length <= 8) ? currentValue : (+currentValue).toExponential(6);
 })
 
 backspaceButton.addEventListener('click', () => {
@@ -116,7 +122,7 @@ backspaceButton.addEventListener('click', () => {
   if (!currentValue) {
     currentValue = 0;
   }
-  displayOutput.textContent = currentValue;
+  displayOutput.textContent = (currentValue.toString().length <= 8) ? currentValue : (+currentValue).toExponential(6);
 })
 
 window.addEventListener('keydown', (e) => {
